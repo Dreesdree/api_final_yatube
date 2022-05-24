@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from rest_framework.generics import get_object_or_404
 from rest_framework import viewsets, permissions, filters
 from posts.models import Post, Group, Follow, User
-from api.serializers import PostSerializer, GroupSerializer, CommentSerializer, FollowSerializer
+from api.serializers import PostSerializer, \
+    GroupSerializer, CommentSerializer, FollowSerializer
 from api.permissions import AuthorOrReading
 from rest_framework.pagination import LimitOffsetPagination
 
