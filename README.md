@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 ### Описание проекта API для Yatube:
 
 REST API для социальной сети Yatube. 
@@ -113,4 +111,3 @@ GET .../api/v1/groups/1/
 ```
 python3 manage.py runserver
 ```
->>>>>>> 2156c9d5be303285b7bc63e9f757695f9e994281
