@@ -34,7 +34,6 @@ class CommentSerializer(serializers.ModelSerializer):
         validators = []
 
 
-
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
