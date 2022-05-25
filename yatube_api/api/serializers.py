@@ -18,19 +18,21 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(
         read_only=True, slug_field='username')
-    post = serializers.ReadOnlyField(source='post.id')
-    text = serializers.CharField()
+    post = serializers.SlugRelatedField(
+        read_only=True, slug_field='id')
+
+    def validate(self, data):
+        if not data:
+            raise serializers.ValidationError(
+                'Коментарий не должен быть пустым'
+            )
+        return data
 
     class Meta:
         fields = '__all__'
         model = Comment
+        validators = []
 
-        def validate_text(self, data):
-            if not data:
-                raise serializers.ValidationError(
-                    'Коментарий не должен быть пустым'
-                )
-            return data
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -61,9 +63,9 @@ class FollowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
         fields = '__all__'
-        validators = [
+        validators = (
             UniqueTogetherValidator(
                 queryset=Follow.objects.all(),
-                fields=['user', 'following']
-            )
-        ]
+                fields=('user', 'following')
+            ),
+        )
